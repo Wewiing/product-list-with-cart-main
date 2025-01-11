@@ -46,6 +46,8 @@ main .title {
 
 .card img {
   width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
   height: auto;
 }
 
@@ -133,14 +135,6 @@ main .title {
   cursor: pointer;
   justify-content: center;
   align-items: center;
-}
-
-.cart-button:hover .add-to-cart {
-  display: none; 
-}
-
-.cart-button:hover .quantity-control {
-  display: flex;
 }
 
 .cart {
@@ -331,6 +325,11 @@ dialog {
 /* Centrado por defecto (para pantallas grandes) */
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Bloquea el scroll */
+body.modal-open {
+  overflow: hidden;
 }
 
 dialog .icon{

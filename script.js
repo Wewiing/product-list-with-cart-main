@@ -21,7 +21,7 @@ async function loadProducts() {
                     <source srcset="${product.image.desktop}" media="(min-width: 1024px)">
                     <source srcset="${product.image.tablet}" media="(min-width: 768px)">
                     <source srcset="${product.image.mobile}" media="(max-width: 767px)">
-                    <img src="${product.image.thumbnail}" alt="${product.name}">
+                    <img class="product-image" src="${product.image.thumbnail}" alt="${product.name}">
                 </picture>
             `;
 
@@ -75,13 +75,28 @@ async function loadThumbnailImgs(productName) {
     }
 }
 
-//Crea una orden y actualiza el carrito
-function quantityControlMenu(){
+function quantityControlMenu() {
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
         const decrementBtn = card.querySelector('.decrement');
         const incrementBtn = card.querySelector('.increment');
         const quantityDisplay = card.querySelector('.quantity');
+
+        const addToCartBtn = card.querySelector('.add-to-cart');
+        const quantityControlBtns = card.querySelector('.quantity-control');
+        const productImage = card.querySelector('.product-image');
+
+        // Control de cantidad esté oculto inicialmente
+        quantityControlBtns.style.display = 'none';
+
+        addToCartBtn.addEventListener('click', () => {
+            addToCartBtn.style.display = 'none';
+            quantityControlBtns.style.display = 'flex'; // Mostrar el control de cantidad
+            productImage.style.border = '4px solid hsl(14, 86%, 42%)';
+            productImage.style.borderRadius = '10px';
+            quantityDisplay.textContent = 1;
+            updateOrder();
+        });
 
         const updateOrder = () => {
             generateOrderList();
@@ -102,6 +117,14 @@ function quantityControlMenu(){
             if (currentQuantity > 0) {
                 quantityDisplay.textContent = currentQuantity - 1;
                 updateOrder();
+            }
+
+            // Si la cantidad llega a 0, revertimos al botón "Add to Cart"
+            if (currentQuantity - 1 === 0) {
+                addToCartBtn.style.display = 'flex'; // Mostrar el botón de agregar al carrito
+                quantityControlBtns.style.display = 'none'; // Ocultar el control de cantidad
+                productImage.style.border = 'none';
+                productImage.style.borderRadius = '8px';
             }
         });
     });
@@ -190,6 +213,7 @@ function updateCart(){
         document.querySelector('.empty-message').style.display = 'flex'
         //Elimina el boton de confirm order
         document.querySelector('.confirm-order').style.display = 'none';
+        document.querySelector('.delivery-message').style.display = 'none';
     }
 }
 
@@ -273,17 +297,20 @@ function setupConfirmOrderButton() {
 
     newConfirmOrderBtn.addEventListener('click', async () => {
         modalOrderConfirmation.showModal();
+        document.body.classList.add('modal-open'); // Añade la clase para bloquear el scroll
         await displayConfirmedCart();
     });
 
     closeModalBtn.addEventListener('click', () => { // Cierra el modal y resetea el menú y carrito
         modalOrderConfirmation.close();
+        document.body.classList.remove('modal-open'); // Elimina la clase para desbloquear el scroll
         resetCart();
     });
 
     modalOrderConfirmation.addEventListener('click', (event) => { // Cierra el modal sin hacer cambios en el carrito ni el menú
         if (event.target === modalOrderConfirmation) {
             modalOrderConfirmation.close();
+            document.body.classList.remove('modal-open'); // Elimina la clase para desbloquear el scroll
         }
     });
 }
@@ -299,25 +326,36 @@ function setupEventHandlers() {
     setupConfirmOrderButton();
 }
 
-function resetCart() {
-    // Limpiar la orden
-    order.splice(0, order.length);
-    
+function resetMenu(){
     // Resetear cantidades en el menú de productos
     const quantities = document.querySelectorAll('.cart-button .quantity');
     quantities.forEach(quantity => quantity.textContent = '0');
 
-    //Elmina los eventos asociados a los quantityControls de Menu
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
         const decrementBtn = card.querySelector('.decrement');
         const incrementBtn = card.querySelector('.increment');
 
+        card.querySelector('.add-to-cart').style.display='flex';
+        card.querySelector('.quantity-control').style.display='none'
+        card.querySelector('.product-image').style.border='none'
+        card.querySelector('.product-image').style.borderRadius='8px'
+        
+        //Elmina los eventos asociados a los quantityControls de Menu
         incrementBtn.replaceWith(incrementBtn.cloneNode(true));
         decrementBtn.replaceWith(decrementBtn.cloneNode(true));
     });
+
+}
+
+function resetCart() {
+    // Limpiar la orden
+    order.splice(0, order.length);
     
-    // Actualizar la UI
+    // Reset Menu UI and delete quantity controls events
+    resetMenu();
+
+    // Update UI
     updateCart();
     setupEventHandlers();
 }
