@@ -486,6 +486,10 @@ dialog .new-order-btn{
 button:focus, button:active {
   outline: none;
   box-shadow: none;
-  -webkit-tap-highlight-color: transparent; /* Elimina el color azul claro */
+
   user-select: none; /* Evita la selección del contenido */
+}
+
+*{
+  -webkit-tap-highlight-color: transparent; /* Elimina el color azul claro */
 }
