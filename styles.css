@@ -481,3 +481,10 @@ dialog .new-order-btn{
   font-weight: 500;
   border: none;
 }
+
+/*Oculta el relleno azul cuando el boton es presionado*/
+button:focus, 
+button:active {
+  outline: none;
+  box-shadow: none;
+}
