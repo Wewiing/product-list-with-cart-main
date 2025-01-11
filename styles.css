@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;600;700&display=swap');
+
+body{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 7% 0 7%;
+  gap: 40px;
+  justify-content: center;
+  padding: 20px;
+  font-family: "Red Hat Text";
+  background-color: hsl(20, 50%, 98%);
+}
+
+main {
+  width: 850px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+main .title {
+  font-weight: 700;
+  font-size: 38px;
+  margin: 20px 0px;
+}
+
+#products {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  width: 260px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: hsl(20, 50%, 98%);
+  box-sizing: border-box;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  margin-top: 15px;
+  padding: 5px;
+}
+
+.card-content .name{
+  margin: 0;
+  font-weight: 700;
+  color: hsl(14, 65%, 9%);
+}
+
+.card-content .category {
+  margin: 6px 0;
+  color: hsl(7, 20%, 60%);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.price {
+  font-weight: 700;
+  margin:6px 0;
+  padding: 0;
+  color: hsl(14, 86%, 42%)
+}
+
+.cart-button {
+  width: 160px;
+  height: 40px;
+  position: absolute;
+  left: 40px;
+  bottom: 98px;
+}
+
+.add-to-cart, .quantity-control{
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.add-to-cart {
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 20px;
+  border: solid 1px hsl(12, 20%, 44%);
+  align-content: center;
+  justify-content: center;
+  color: hsl(14, 65%, 9%);
+  background-color: white;
+  font-family: 'Red Hat Text';
+  font-weight: 600;
+  gap: 10px;
+}
+
+.quantity-control{
+  display: none;
+  background-color: hsl(14, 86%, 42%);
+  border-radius: 20px;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-weight: 600;
+}
+
+.quantity-control button {
+  display: flex;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid white;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  font-family: 'Red Hat Text';
+  font-weight: 600;
+  font-size: 17px;
+  color: white;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-button:hover .add-to-cart {
+  display: none; 
+}
+
+.cart-button:hover .quantity-control {
+  display: flex;
+}
+
+.cart {
+  width: 350px;
+  height: fit-content;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.cart .title{
+  margin: 25px 0px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  padding: 0px 20px;
+  font-size: 20px;
+  color: hsl(14, 86%, 42%);
+  align-self: flex-start;
+}
+
+.cart .empty-message{
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-message img{
+  width: 150px;
+  height: auto;
+}
+
+.empty-message .message{
+  margin-top: 30px;
+  margin-bottom: 40px;
+  color: hsl(14, 65%, 9%);
+  font-weight: 400;
+}
+
+.cart-list {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-list li { /* Selecciona cada li que sigue a otro li */
+  position: relative;
+  padding: 1.3rem 0;
+}
+
+.cart-list li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 310px; /* Ajusta este valor para cambiar el largo de la línea */
+  height: 1px;
+  background-color: #ccc;
+}
+
+.item{
+  margin:0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.item .title{
+  color: hsl(14, 65%, 9%);
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.item .quantity{
+  padding:0px 20px;
+  font-weight: 700;
+  color: hsl(14, 86%, 42%);
+}
+
+.item .individual-price{
+  color: hsl(12, 20%, 44%);
+  padding: 0px 10px;
+  font-weight: 600;
+}
+
+.item .total-price{
+  color: hsl(7, 7%, 24%);
+  font-weight: 600;
+}
+
+.remove-button{
+  cursor: pointer;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin:0 20px ;
+  background-color: white;
+  border: 2px solid hsl(14, 25%, 72%);
+  transition: all ease-out 0.2s;
+}
+
+.remove-button:hover{
+  border-color: black;
+}
+
+.remove-button:hover svg path {
+  fill: black; /* Cambia el relleno del SVG a negro */
+}
+
+.cart .order-total{
+  padding: 20px;
+  padding-bottom: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.cart .order-total .description{
+  color:hsl(7, 7%, 24%);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cart .order-total .value{
+  color: hsl(14, 65%, 9%);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.cart .delivery-message{
+  background-color:hsl(20, 50%, 98%);
+  border-radius: 10px;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+  padding: 12px;
+  color:hsl(7, 7%, 24%);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.confirm-order{
+  width: 310px;
+  background-color: hsl(14, 86%, 42%);
+  border-radius: 20px;
+  font-size: 15px;
+  color:white;
+  font-weight: 500;
+  border: none;
+  margin: 18px;
+  padding: 10px 0px;
+  transition: all ease-in-out 0.1s;
+}
+
+.confirm-order:hover{
+  background-color: hsl(14, 84%, 29%);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Estilo general para el diálogo */
+dialog {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 500px;
+  margin: auto;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Centrado por defecto (para pantallas grandes) */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog .icon{
+  margin: 20px 0px;
+  margin-bottom: 15px;
+}
+
+dialog .title{
+  font-size: 40px;
+  font-weight: 900;
+  color:hsl(14, 65%, 9%);
+  margin: 0;
+}
+
+dialog .message{
+  font-size: 15px;
+  color: hsl(7, 7%, 24%);
+  font-weight: 500;
+  margin-top:0;
+  margin-left: 0px;
+}
+
+dialog .cart-content{
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin: 0;
+  margin-top: 20px;
+  background-color: hsl(20, 50%, 98%);
+}
+
+dialog ul{
+  padding: 0px;
+  margin: 0px;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+/* Selecciona toda la barra de desplazamiento */
+dialog ul::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+  height: 10px; /* Alto de la barra de desplazamiento (para scroll horizontal) */
+}
+
+/* Estilo del fondo de la barra de desplazamiento */
+dialog ul::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color del fondo */
+  border-radius: 10px; /* Opcional: esquinas redondeadas */
+}
+
+/* Estilo del "thumb" (la parte que se mueve) */
+dialog ul::-webkit-scrollbar-thumb {
+  background: #929292; /* Color del thumb */
+  border-radius: 10px; /* Esquinas redondeadas */
+}
+
+/* Estilo del "thumb" al pasar el cursor encima */
+dialog ul::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color del thumb al hacer hover */
+}
+
+dialog .item{
+  position: relative;
+  padding: 12px 0px;
+  padding-right: 5px; /*Para scrollbar*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+dialog .item::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Ajusta este valor para cambiar el largo de la línea */
+  height: 1px;
+  background-color: hsl(13, 31%, 94%);
+}
+
+dialog .item .description{
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  gap: 10px;
+}
+
+dialog .item .description img{
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+dialog .item .description .name{
+  font-weight: 600;
+  margin: 0px 0px 4px 0px;
+}
+
+dialog .item .description .quantity{
+  padding: 0;
+  margin: 4px 0px 4px 0px;
+}
+
+dialog .item .description .individual-price{
+  margin-left: 15px;
+  padding: 0;
+  color: hsl(12, 20%, 44%);
+  font-weight: 400;
+}
+
+dialog .item .total-price{
+  margin-right: 6px;
+  color: hsl(14, 65%, 9%);
+  font-weight: 700;
+}
+
+dialog .confirmed-order-total{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+dialog .confirmed-order-total .description{
+  font-size: 14px;
+  font-weight: 600;
+  height: fit-content;
+  color: hsl(7, 7%, 24%);
+}
+
+dialog .confirmed-order-total #value{
+  margin: 0;
+  margin-right: 6px;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+dialog .new-order-btn{
+  border-radius: 25px;
+  margin-top: 20px;
+  padding: 12px 0;
+  width: 100%;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font-family:'Red Hat Text';
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+}
